@@ -1,11 +1,10 @@
 import { io } from 'socket.io-client';
-import { SOCKET_URL } from '../config';
 
 let socket = null;
 
 export const initializeSocket = () => {
   if (!socket) {
-    socket = io(SOCKET_URL, {
+    socket = io("https://lms-backend-2s98.onrender.com", {
       withCredentials: true,
       transports: ['websocket', 'polling']
     });
