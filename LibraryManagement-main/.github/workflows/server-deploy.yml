@@ -2,20 +2,15 @@ name: Deploy Server to Render
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+    branches: [main]
+    paths: ['server/**']
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Deploy to Render
-        uses: jakejarvis/render-deploy-action@v1.5.0
-        with:
-          service-id: ${{ secrets.RENDER_SERVICE_ID }}
-          api-key: ${{ secrets.RENDER_API_KEY }}
+      - uses: actions/checkout@v3
+      - name: Build Check
+        run: |
+          cd server
+          npm install
