@@ -1,13 +1,11 @@
 import { io } from 'socket.io-client';
-
-// HARDCODE PRODUCTION URL - No conditions
-const SOCKET_URL = "https://lms-backend-2s98.onrender.com";
+import { SOCKET_URL } from '../config';
 
 let socket = null;
 
 export const initializeSocket = () => {
   if (!socket) {
-    console.log('🔌 Connecting to:', SOCKET_URL);
+    console.log('🔌 Connecting to Socket:', SOCKET_URL);
     
     socket = io(SOCKET_URL, {
       withCredentials: true,
