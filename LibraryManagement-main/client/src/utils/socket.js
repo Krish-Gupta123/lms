@@ -1,16 +1,12 @@
 import { io } from 'socket.io-client';
 
-// Smart URL detection
-const getSocketURL = () => {
-  const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-  return isDevelopment ? "http://localhost:8080" : "https://lms-backend-2s98.onrender.com";
-};
+// HARDCODE PRODUCTION URL - No conditions
+const SOCKET_URL = "https://lms-backend-2s98.onrender.com";
 
 let socket = null;
 
 export const initializeSocket = () => {
   if (!socket) {
-    const SOCKET_URL = getSocketURL();
     console.log('🔌 Connecting to:', SOCKET_URL);
     
     socket = io(SOCKET_URL, {

@@ -1,8 +1,8 @@
-const backendApiUrl = "http://localhost:8080/api";
+const backendApiUrl = "https://lms-backend-2s98.onrender.com/api";
 
 const routes = {
   AUTHOR: "author",
-  AUTH: "auth",
+  AUTH: "auth", 
   BOOK: "book",
   BORROWAL: "borrowal",
   GENRE: "genre",
@@ -11,9 +11,9 @@ const routes = {
 
 const methods = {
   GET: "get",
-  GET_ALL: "getAll",
+  GET_ALL: "getAll", 
   POST: "add",
-  PUT: "update",
+  PUT: "update", 
   DELETE: "delete"
 };
 

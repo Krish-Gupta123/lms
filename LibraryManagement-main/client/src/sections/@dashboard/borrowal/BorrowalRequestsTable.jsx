@@ -10,7 +10,7 @@ const BorrowalRequestsTable = () => {
 
   useEffect(() => {
     if (user && user.isAdmin) {
-      axios.get("http://localhost:8080/api/borrow-request", { withCredentials: true })
+      axios.get("https://lms-backend-2s98.onrender.com/api/borrow-request", { withCredentials: true })
         .then((res) => {
           setRequests(res.data);
           setLoading(false);

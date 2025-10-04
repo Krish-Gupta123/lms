@@ -10,7 +10,7 @@ const AdminBorrowRequests = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchRequests = () => {
-    axios.get("http://localhost:8080/api/borrow-request", { withCredentials: true })
+    axios.get("hhttps://lms-backend-2s98.onrender.com/api/borrow-request", { withCredentials: true })
       .then((res) => {
         console.log("Borrow requests API response:", res.data);
         setRequests(res.data);
@@ -29,7 +29,7 @@ const AdminBorrowRequests = () => {
   const handleAction = (id, action) => {
     const borrowedDate = new Date().toISOString().slice(0, 10);
     const dueDate = new Date(Date.now() + 14*24*60*60*1000).toISOString().slice(0, 10);
-    axios.patch(`http://localhost:8080/api/borrow-request/${id}`, { action, borrowedDate, dueDate }, { withCredentials: true })
+    axios.patch(`https://lms-backend-2s98.onrender.com/api/borrow-request/${id}`, { action, borrowedDate, dueDate }, { withCredentials: true })
       .then(() => {
         toast.success(`Request ${action}ed`);
         fetchRequests();

@@ -11,7 +11,7 @@ export default function AccountPopover() {
 
   const logoutUser = () => {
     handleClose();
-    axios.get(`http://localhost:8080/api/auth/logout`, { withCredentials: true })
+    axios.get(`https://lms-backend-2s98.onrender.com/api/auth/logout`, { withCredentials: true })
       .then((response) => {
         // handle success
         if (response.status === 200) {

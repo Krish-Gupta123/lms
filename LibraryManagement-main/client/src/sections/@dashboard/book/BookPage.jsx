@@ -237,7 +237,7 @@ const BookPage = () => {
                         onClick={async () => {
                           try {
                             // Use full backend URL for borrow request
-                            await axios.post("http://localhost:8080/api/borrow-request", { bookId: book._id }, { withCredentials: true });
+                            await axios.post("https://lms-backend-2s98.onrender.com/api/borrow-request", { bookId: book._id }, { withCredentials: true });
                             toast.success("Borrow request sent!");
                           } catch (error) {
                             if (error.response && error.response.data && error.response.data.message) {
