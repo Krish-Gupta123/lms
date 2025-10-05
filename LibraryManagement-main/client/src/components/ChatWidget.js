@@ -1,7 +1,7 @@
 // src/components/ChatWidget.js
 
 import { useState, useEffect, useRef } from 'react';
-import socket from '../socket';
+import socket from 'socket.io-client';
 
 const BOT_OPTIONS = [
   { label: 'What can I do here?', value: 'features' },

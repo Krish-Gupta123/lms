@@ -2,7 +2,7 @@
 
 import toast from 'react-hot-toast';
 import { useEffect } from 'react';
-import socket from '../socket';
+import socket from 'socket.io-client';
 
 export default function useSocketEvents({ onBookUpdate, onNotification, onReservation, onAdminStats }) {
   useEffect(() => {
