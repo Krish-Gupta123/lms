@@ -1,7 +1,5 @@
-// src/components/ChatWidget.js
-
 import { useState, useEffect, useRef } from 'react';
-import socket from 'socket.io-client';
+import io from 'socket.io-client'; // ✅ Correct import
 
 const BOT_OPTIONS = [
   { label: 'What can I do here?', value: 'features' },
@@ -25,8 +23,8 @@ function getBotResponse(option) {
   }
 }
 
-
 export default function ChatWidget() {
+  const [socket, setSocket] = useState(null);
   const [messages, setMessages] = useState([
     { text: 'Hi! I am your Library Assistant. Choose an option or ask a question.', time: new Date().toLocaleTimeString(), bot: true }
   ]);
@@ -35,11 +33,19 @@ export default function ChatWidget() {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    socket.on('chat:message', (msg) => {
+    // Initialize socket
+    const newSocket = io(process.env.REACT_APP_API_URL, {
+      withCredentials: true
+    });
+    setSocket(newSocket);
+
+    newSocket.on('chat:message', (msg) => {
       setMessages((prev) => [...prev, msg]);
     });
+
     return () => {
-      socket.off('chat:message');
+      newSocket.off('chat:message');
+      newSocket.disconnect();
     };
   }, []);
 
@@ -49,7 +55,7 @@ export default function ChatWidget() {
 
   const sendMessage = (e) => {
     e.preventDefault();
-    if (input.trim()) {
+    if (input.trim() && socket) {
       const userMsg = { text: input, time: new Date().toLocaleTimeString() };
       socket.emit('chat:message', userMsg);
       // Bot auto-response for known options
@@ -62,13 +68,16 @@ export default function ChatWidget() {
   };
 
   const handleOption = (opt) => {
-    const userMsg = { text: opt.label, time: new Date().toLocaleTimeString() };
-    socket.emit('chat:message', userMsg);
-    setTimeout(() => {
-      setMessages((prev) => [...prev, { text: getBotResponse(opt.value), time: new Date().toLocaleTimeString(), bot: true }]);
-    }, 600);
+    if (socket) {
+      const userMsg = { text: opt.label, time: new Date().toLocaleTimeString() };
+      socket.emit('chat:message', userMsg);
+      setTimeout(() => {
+        setMessages((prev) => [...prev, { text: getBotResponse(opt.value), time: new Date().toLocaleTimeString(), bot: true }]);
+      }, 600);
+    }
   };
 
+  // Rest of your component remains same...
   if (minimized) {
     return (
       <div style={{ position: 'fixed', bottom: 24, right: 24, zIndex: 1000 }}>
