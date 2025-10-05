@@ -44,6 +44,7 @@ mongoose.connect(process.env.MONGO_URI, {
 // Use CORS for Cross Origin Resource Sharing - UPDATED FOR DEPLOYMENT
 app.use(cors({
   origin: [
+    "https://lms-frontend-liux.onrender.com",
     "http://localhost:3000",
     "https://lms-git-main-krish-guptas-projects-f5aa8b6e.vercel.app",
     "https://lms-krish-gupta123.vercel.app",
@@ -113,6 +114,7 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: [
+      "https://your-frontend-service.onrender.com",
       "http://localhost:3000",
       "https://lms-git-main-krish-guptas-projects-f5aa8b6e.vercel.app",
       "https://lms-krish-gupta123.vercel.app",
