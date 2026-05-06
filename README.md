@@ -512,8 +512,7 @@ This project is licensed under the **MIT License** - see the [LICENSE.md](LICENS
 - [ ] Mobile App (React Native)
 - [ ] Analytics Dashboard Export
 - [ ] Multi-language Support
-- [ ] Dark Mode
-- [ ] Payment Integration
+
 
 ---
 
